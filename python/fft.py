@@ -23,9 +23,9 @@ def spectogram(file_path, stride_ms = 10.0, window_ms = 20.0, max_freq = None, e
 
     fft = np.fft.rfft(windows * weighting, axis=0)
     fft = np.absolute(fft)
-    fft = fft2
+    fft = fft**2
 
-    scale = np.sum(weighting2) * sample_rate
+    scale = np.sum(weighting**2) * sample_rate
     fft[1:-1, :] *= (2.0 / scale)
     fft[(0, -1), :] /= scale
 
@@ -35,8 +35,8 @@ def spectogram(file_path, stride_ms = 10.0, window_ms = 20.0, max_freq = None, e
     # Compute spectrogram feature
     ind = np.where(freqs <= max_freq)[0][-1] + 1
     spec = np.log(fft[:ind, :] + eps)
-    img = Image.fromarray(spec, 'RGB')
+    img = Image.fromarray(spec, '1')
     img.save('spectogram.jpg')
     return img.show()
-file_path = r"C:\Users\anshu\Desktop\cool_sound.wav"
+file_path = r"C:\Users\spaka\Downloads\test-clean\test-clean\LibriSpeech\test-clean\121\121726\121-121726-0000.flac"
 spectogram(file_path, max_freq = 30000)
