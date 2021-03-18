@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const passport = require('passport');
 const unicorn = require('unicorn').install();
+const methodOverride = require('method-override');
 // import forms from './dbForms.js'
 
 const logger = require("./server/middleware/logger");
@@ -38,9 +39,13 @@ app.use(express.urlencoded({ extended: false }));
 
 app.set('view engine', 'ejs');
 
-app.use('/', require('./server/routes/index.js'));
-
 app.use(express.static(path.join(__dirname, 'server', 'public'))); // static path
+app.use(methodOverride('_method'));
+
+app.use('/', require('./server/routes/index.js'));
+app.use('/articles', require('./server/routes/articles.js'));
+
+
 // app.use(logger);
 
 
@@ -59,7 +64,8 @@ app.use(express.static(path.join(__dirname, 'server', 'public'))); // static pat
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(PORT, () => {
-            console.log(`Server listening on ${PORT}`.cyan().blinking().bold());
+            console.log(`Server listening on ${PORT}`.cyan().blinking().underline());
+
         });
     })
     .catch(err => console.log(err));

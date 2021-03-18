@@ -1,0 +1,21 @@
+<div class="form-group">
+    <h1 class="mb-4">Say Something Cool</h1>
+    <h3 class="mb-2 mt-2">Title</h3>
+    <input required value="<%= article.title %>" type="text" name="title" id="title" class="form-control">
+
+    <h3 class="mb-2 mt-2">Description</h3>
+    <textarea required name="description" id="description" class="form-control">
+        <%= article.description %>
+    </textarea>
+
+    <h3 class="mb-2 mt-2">Body (In Markdown)</h3>
+    <textarea required name="body" id="body" class="form-control" style="height: 139px;">
+        <%= article.body %>
+    </textarea>
+
+    <a href="/" class="btn btn-secondary">Cancel</a>
+
+    <a href="/">
+        <button type="submit" class="btn btn-primary">Post Article</button>
+    </a>
+</div>

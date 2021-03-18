@@ -5,7 +5,7 @@ let _db; //'_' private
 const mongoConnect = function(callback) {
     MongoClient.connect(process.env.MONGO_URI, { useUnifiedTopology: true })
         .then(client => {
-            _db = client.db('cart-api');
+            _db = client.db('mediumtwo');
             callback();
         })
         .catch(error => {
