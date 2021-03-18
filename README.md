@@ -1,6 +1,6 @@
 # Smart Blog with Automatic Tagging using TF-IDF
 
-Live [link](https://nanua-global.herokuapp.com).
+Live [link](https://smart-ai-blog.herokuapp.com/).
 
 ### Working with the following technologies:
 
