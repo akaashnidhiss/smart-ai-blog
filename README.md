@@ -1,4 +1,4 @@
-# 🗒️ [Smart Blog](https://smart-ai-blog.herokuapp.com/) with Automatic Tagging using TF-IDF
+# 📝 [Smart Blog](https://smart-ai-blog.herokuapp.com/) with Automatic Tagging using TF-IDF
 
 + Live [link](https://smart-ai-blog.herokuapp.com/).
 
