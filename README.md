@@ -19,6 +19,6 @@ It uses the NLP Text Pre-Processing Alogrithm, TF-IDF, to automate this task and
 - Passport's authentication
 - EJS's templates
 
-### 🔧 Languages used:
+### 🈯 Languages used:
 - Python
 - Javascript
