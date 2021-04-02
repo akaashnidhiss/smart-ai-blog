@@ -4,6 +4,7 @@
 
 ```diff
 + Sample CMS built with MEN Stack
++ Automated Tagging added (stopwords for markdown not added)
 ```
 This project seeks to create a content management system (CMS) for a online publishing platform with features to enhance user retention, overall user friendliness and help admin users to perform CRUD operations on their respective articles.
 
