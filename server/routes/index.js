@@ -18,6 +18,12 @@ router.get('/home', async(req, res) => {
     res.render('home', { articles: article });
 })
 
+// @desc Sorting by categories page
+// @route GET /categories/:tag
+router.get('/categories/:tag', async(req, res) => {
+    const article = await ArticleModel.find({ tags: req.params.tag }).sort({ createdAt: 'desc' });
+    res.render('category', { articles: article, category: req.params.tag });
+})
 
 
 

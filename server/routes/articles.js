@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const { PythonShell } = require('python-shell');
+var fs = require('fs');
+
 
 const ArticlesControls = require('../controllers/ArticlesControls');
 const { findById } = require('../models/Article');
@@ -118,31 +120,41 @@ function saveArticleAndRedirect(path) {
 
 
         const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
+        // let arr = [articleAll.length, article.body.toString()];
         let arr = [articleAll.length, article.body.toString()];
-
 
         for (let i = 0; i < articleAll.length; i++) {
             arr.push(articleAll[i].body.toString());
         }
-        console.log(arr);
+        // console.log(arr);
         let options = {
             mode: 'text',
             pythonOptions: ['-u'], // get print results in real-time
-            scriptPath: '', //If you are having python_test.py script in same folder, then it's optional.
-            args: arr // [article.body.toString(), articlesAll.body.toString()] //An argument which can be accessed in the script using sys.argv[1]
+            scriptPath: 'python/', //If you are having python_test.py script in same folder, then it's optional.
+            args: [] // [article.body.toString(), articlesAll.body.toString()] //An argument which can be accessed in the script using sys.argv[1]
         };
+        var file = fs.createWriteStream('python/array.txt');
+        file.on('error', function(err) { /* error handling */ });
+        arr.forEach(function(v) { file.write(JSON.stringify(v) + "," + "/n") });
+        file.end();
 
 
 
         PythonShell.run('Blogging.py', options, function(err, result) {
-            if (err) console.log(err);
+            try {
+                tag_result = JSON.parse(result);
+                console.log('result: ', tag_result);
+
+                article.tags = tag_result.tags;
+                Article = article.save()
+            } catch (error) {
+                throw err;
+            }
             // result is an array consisting of messages collected 
             //during execution of script.
-            tag_result = JSON.parse(result);
-            console.log('result: ', tag_result);
 
-            article.tags = tag_result.tags;
-            Article = article.save()
+
+
 
         });
 
