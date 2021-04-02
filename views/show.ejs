@@ -21,19 +21,28 @@
         <h1 class="mb-1">
             <%= article.title %>
         </h1>
-        <div class="text-muted mb-2">
-            <%= article.createdAt.toLocaleDateString() %>
-        </div>
 
-        <a href="/" class="btn btn-secondary">All Articles</a>
-        <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
-        <form action="/articles/<%= article.id %>?_method=DELETE" class="d-inline" method="POST">
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+        <% for(var i=0; i < article.tags.length ; i++) { %>
+            <a href="/categories/<%= article.tags[i] %>">
+                <span class="badge badge-primary" style="color : #252525 !important; background-color: aliceblue !important; ">
+                <%= article.tags[i] %>
+            </span>
+            </a>
+            <% } %>
 
-        <div class="mb-3">
-            <%- article.sanitisedHTML %>
-        </div>
+                <div class="text-muted mb-2">
+                    <%= article.createdAt.toLocaleDateString() %>
+                </div>
+
+                <a href="/" class="btn btn-secondary">All Articles</a>
+                <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+                <form action="/articles/<%= article.id %>?_method=DELETE" class="d-inline" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+                <div class="mb-3">
+                    <%- article.sanitisedHTML %>
+                </div>
     </div>
 </body>
 

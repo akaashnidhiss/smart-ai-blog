@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
-// const ContactControls = require('../controllers/ContactControls');
+const { PythonShell } = require('python-shell');
+
 const ArticlesControls = require('../controllers/ArticlesControls');
 const { findById } = require('../models/Article');
 const ArticleInfo = require('../models/Article');
@@ -11,11 +12,11 @@ const ArticleInfo = require('../models/Article');
 // @route GET /articles
 
 router.get('/', async(req, res) => {
-    const article = await ArticleModel.find().sort({ createdAt: 'desc' });
+    const article = await ArticleInfo.find().sort({ createdAt: 'desc' });
     res.render('home', { articles: article });
 })
 router.get('/home', async(req, res) => {
-    const article = await ArticleModel.find().sort({ createdAt: 'desc' });
+    const article = await ArticleInfo.find().sort({ createdAt: 'desc' });
     res.render('home', { articles: article });
 })
 
@@ -25,6 +26,38 @@ router.get('/home', async(req, res) => {
 router.get('/add-article', function(req, res) {
     res.render('add-article', { article: new ArticleInfo });
 })
+
+
+
+//Router to handle the incoming request.
+router.get("/python", (req, res, next) => {
+    //Here are the option object in which arguments can be passed for the python_test.js.
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'], // get print results in real-time
+        scriptPath: '', //If you are having python_test.py script in same folder, then it's optional.
+        args: ['shubhamk314'] //An argument which can be accessed in the script using sys.argv[1]
+    };
+
+
+    PythonShell.run('trial.py', options, function(err, result) {
+        if (err) console.log(err);
+        // result is an array consisting of messages collected 
+        //during execution of script.
+        console.log('result: ', result.toString());
+        res.send(result.toString())
+    });
+});
+
+
+
+
+
+
+
+
+
+
 
 // @desc Single Article page
 // @route GET /articles/slug
@@ -69,12 +102,51 @@ router.put('/edit/:id', async(req, res, next) => {
 }, saveArticleAndRedirect('edit'))
 
 
+
+
+
+
+
+
 function saveArticleAndRedirect(path) {
     return async(req, res) => {
         let article = req.article
         article.title = req.body.title
         article.description = req.body.description
         article.body = req.body.body
+
+
+
+        const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
+        let arr = [articleAll.length, article.body.toString()];
+
+
+        for (let i = 0; i < articleAll.length; i++) {
+            arr.push(articleAll[i].body.toString());
+        }
+        console.log(arr);
+        let options = {
+            mode: 'text',
+            pythonOptions: ['-u'], // get print results in real-time
+            scriptPath: '', //If you are having python_test.py script in same folder, then it's optional.
+            args: arr // [article.body.toString(), articlesAll.body.toString()] //An argument which can be accessed in the script using sys.argv[1]
+        };
+
+
+
+        PythonShell.run('Blogging.py', options, function(err, result) {
+            if (err) console.log(err);
+            // result is an array consisting of messages collected 
+            //during execution of script.
+            tag_result = JSON.parse(result);
+            console.log('result: ', tag_result);
+
+            article.tags = tag_result.tags;
+            Article = article.save()
+
+        });
+
+
         try {
             Article = await article.save()
             res.redirect(`/articles/${Article.slug}`)
