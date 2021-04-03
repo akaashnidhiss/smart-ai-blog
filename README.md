@@ -37,3 +37,8 @@ It uses the NLP Text Pre-Processing Alogrithm, TF-IDF, to automate this task and
 ![image](https://user-images.githubusercontent.com/60477228/113470226-9bbcf780-9471-11eb-920a-54b6c4d00874.png)
 
 
+- #### Navigating to category specific pages
+![image](https://user-images.githubusercontent.com/60477228/113470277-0110e880-9472-11eb-9601-6bb4cc77ce8b.png)
+
+
+
