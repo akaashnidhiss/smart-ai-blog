@@ -25,13 +25,13 @@ It uses the NLP Text Pre-Processing Alogrithm, TF-IDF, to automate this task and
 - Python
 - Javascript
 
-### Working Example:
-#### Working of Search Functionality
+### 👷 Working Example:
+- #### Working of Search Functionality
 ![image](https://user-images.githubusercontent.com/60477228/113470114-9ca15980-9470-11eb-935e-ecbf209b3695.png)
 ![image](https://user-images.githubusercontent.com/60477228/113470123-af1b9300-9470-11eb-849e-b53302c7d4ad.png)
 
 
-#### Working of Automated Tagging
+- #### Working of Automated Tagging
 ![image](https://user-images.githubusercontent.com/60477228/113470170-22250980-9471-11eb-9716-3f0f2083fc9e.png)
 ![image](https://user-images.githubusercontent.com/60477228/113470179-2fda8f00-9471-11eb-9831-ed6ed2ab67ad.png)
 ![image](https://user-images.githubusercontent.com/60477228/113470226-9bbcf780-9471-11eb-920a-54b6c4d00874.png)
