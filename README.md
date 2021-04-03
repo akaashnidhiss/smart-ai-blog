@@ -5,6 +5,7 @@
 ```diff
 + Sample CMS built with MEN Stack
 + Automated Tagging added (stopwords for markdown not added)
++ Search functionality added (using document similarity implemented with cosine similarity)
 ```
 This project seeks to create a content management system (CMS) for a online publishing platform with features to enhance user retention, overall user friendliness and help admin users to perform CRUD operations on their respective articles.
 
@@ -23,3 +24,9 @@ It uses the NLP Text Pre-Processing Alogrithm, TF-IDF, to automate this task and
 ### 🈯 Languages used:
 - Python
 - Javascript
+
+### Working Example:
+! [](https://media.discordapp.net/attachments/743142937386549358/827751363177218078/Screenshot_20210403-091749_Firefox.jpg?width=329&height=677)
+! [](https://media.discordapp.net/attachments/743142937386549358/827751386807926824/Screenshot_20210403-091800_Firefox.jpg?width=329&height=677)
+! [](https://media.discordapp.net/attachments/743142937386549358/827751404151767070/Screenshot_20210403-091815_Firefox.jpg?width=329&height=677)
+
