@@ -90,7 +90,7 @@ solved = tf_idf(fin_dataset)
 finalfinal = {}
 
 for key in solved.keys():
-    if key[0] == 1:
+    if key[0] == 0:
         finalfinal[key[1]] = solved[key]
 
 
