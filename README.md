@@ -13,6 +13,8 @@ The project seeks to automate the process of placing the articles under topics/t
 
 It uses the NLP Text Pre-Processing Alogrithm, TF-IDF, to automate this task and properly annotate each article with tags generated on how important a specific feature is to the article.
 
+When a query is passed into the search bar, we use _cosine similarity_ to find the most similar document(article) which corresponds to the query. Thus the query can be typed in natural language, and the web application will provide the top 4 similar articles to the query made.
+
 
 ### 🔧 Working with the following technologies:
 
