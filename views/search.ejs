@@ -8,39 +8,35 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <title>📢 Say something!</title>
+    <title>💡 Search Results
+    </title>
 </head>
 
 <body>
     <div class="container">
-
-        <form action="/articles/search" method="POST" class="mt-lg-5 mb-lg-5" style="max-width: 70% !important;margin-left: auto;margin-right: auto;">
-            <input placeholder="Search for a specific article" type="text" name="query" id="query" class="form-control">
-        </form>
-
-        <div class="mt-lg-5 mb-lg-2"></div>
-
-        <h1 class="mb-4 mt-3">Blog Articles</h1>
-
+        <h1 class="mb-4 mt-3">
+            Search Results
+        </h1>
         <a href="/articles/add-article" class="btn btn-success">New Article</a>
 
-        <% articles.forEach(function(article) { %>
-            <div class="card mt-3 mb-1">
+        <a href="/" class="btn btn-primary">Go back home</a>
+        <% for(var i=0; i < article.length ; i++) { %>
+
+            <div class="card mt-4">
                 <div class="card-body">
                     <h4 class="card-title">
-                        <%= article.title %>
+                        <%= article[i].title %>
                     </h4>
                     <div class="card-subtitle text-muted mb-2">
-                        <%= article.createdAt %>
+                        <%= article[i].createdAt %>
                     </div>
                     <div class="card-text mb-2">
-                        <%= article.description %>
+                        <%= article[i].description %>
                     </div>
-                    <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
+                    <a href="/articles/<%= article[i].slug %>" class="btn btn-primary">Read More</a>
                 </div>
             </div>
-
-            <% } ) %>
+            <% } %>
 
 
     </div>

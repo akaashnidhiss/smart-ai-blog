@@ -8,6 +8,7 @@ var fs = require('fs');
 const ArticlesControls = require('../controllers/ArticlesControls');
 const { findById } = require('../models/Article');
 const ArticleInfo = require('../models/Article');
+const { query } = require('express');
 
 
 // @desc Login/Landing page
@@ -96,7 +97,7 @@ router.get('/edit/:id', async(req, res) => {
 })
 
 // @desc Putting the edited article into db
-// @route PUT /articles/edit/id
+// @route PUT /articles/edit/:id
 
 router.put('/edit/:id', async(req, res, next) => {
     req.article = await ArticleInfo.findById(req.params.id);
@@ -104,7 +105,46 @@ router.put('/edit/:id', async(req, res, next) => {
 }, saveArticleAndRedirect('edit'))
 
 
+// @desc Searching a paricular article from database
+// @route POST /articles/search
 
+router.post('/search', async(req, res, next) => {
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'], // get print results in real-time
+        scriptPath: 'python/', //If you are having python_test.py script in same folder, then it's optional.
+        args: [req.body.query] // [article.body.toString(), articlesAll.body.toString()] //An argument which can be accessed in the script using sys.argv[1]
+    };
+
+
+
+
+
+    // let arr = [articleAll.length, article.body.toString()];
+    // let arr = [];
+
+    // for (let i = 0; i < articleAll.length; i++) {
+    //     arr.push(articleAll[i].body.toString());
+    // }
+    // var file = fs.createWriteStream('python/array.txt');
+    // file.on('error', function(err) { console.log(err) });
+    // arr.forEach(function(v) { file.write(JSON.stringify(v) + "," + "/n") });
+    // file.end();
+
+    const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
+
+    PythonShell.run('Cosine_Similarity.py', options, function(err, result) {
+        try {
+            cosine_result = JSON.parse(result);
+            console.log('result: ', cosine_result);
+            res.render('search', { article: [articleAll[cosine_result.scores[0]].toObject(), articleAll[cosine_result.scores[1]].toObject(), articleAll[cosine_result.scores[2]].toObject(), articleAll[cosine_result.scores[3]].toObject()] });
+
+        } catch (err) {
+            console.log(err);
+        }
+    });
+
+})
 
 
 
@@ -121,9 +161,9 @@ function saveArticleAndRedirect(path) {
 
         const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
         // let arr = [articleAll.length, article.body.toString()];
-        let arr = [articleAll.length, article.body.toString()];
+        let arr = [article.body.toString()];
 
-        for (let i = 0; i < articleAll.length; i++) {
+        for (let i = 1; i < articleAll.length; i++) {
             arr.push(articleAll[i].body.toString());
         }
         // console.log(arr);
@@ -134,7 +174,7 @@ function saveArticleAndRedirect(path) {
             args: [] // [article.body.toString(), articlesAll.body.toString()] //An argument which can be accessed in the script using sys.argv[1]
         };
         var file = fs.createWriteStream('python/array.txt');
-        file.on('error', function(err) { /* error handling */ });
+        file.on('error', function(err) { console.log(err) });
         arr.forEach(function(v) { file.write(JSON.stringify(v) + "," + "/n") });
         file.end();
 
@@ -167,5 +207,46 @@ function saveArticleAndRedirect(path) {
         }
     }
 }
+
+
+function cosine_similarity(query) {
+    return async(req, res) => {
+        let options = {
+            mode: 'text',
+            pythonOptions: ['-u'], // get print results in real-time
+            scriptPath: 'python/', //If you are having python_test.py script in same folder, then it's optional.
+            args: [] // [article.body.toString(), articlesAll.body.toString()] //An argument which can be accessed in the script using sys.argv[1]
+        };
+
+
+
+
+        const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
+        // let arr = [articleAll.length, article.body.toString()];
+        let arr = [query.toString()];
+
+        for (let i = 0; i < articleAll.length; i++) {
+            arr.push(articleAll[i].body.toString());
+        }
+        res.send('working')
+            // var file = fs.createWriteStream('python/array.txt');
+            // file.on('error', function(err) { /* error handling */ });
+            // arr.forEach(function(v) { file.write(JSON.stringify(v) + "," + "/n") });
+            // file.end();
+
+        PythonShell.run('Cosine_Similarity.py', options, function(err, result) {
+            try {
+                cosine_result = JSON.parse(result);
+                console.log('result: ', cosine_result);
+                res.send('done')
+
+            } catch (error) {
+                console.log(error);
+            }
+        });
+    }
+
+}
+
 
 module.exports = router;

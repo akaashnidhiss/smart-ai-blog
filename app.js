@@ -29,6 +29,7 @@ const PORT = process.env.PORT || 8001;
 
 
 // Body Parser Middleware
+app.use(express.text())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
