@@ -27,18 +27,18 @@ It uses the NLP Text Pre-Processing Alogrithm, TF-IDF, to automate this task and
 
 ### 👷 Working Example:
 - #### Working of Search Functionality
-![image](https://user-images.githubusercontent.com/60477228/113470114-9ca15980-9470-11eb-935e-ecbf209b3695.png)
-![image](https://user-images.githubusercontent.com/60477228/113470123-af1b9300-9470-11eb-849e-b53302c7d4ad.png)
+<img src="https://user-images.githubusercontent.com/60477228/113470114-9ca15980-9470-11eb-935e-ecbf209b3695.png" width="500">
+<img src="https://user-images.githubusercontent.com/60477228/113470123-af1b9300-9470-11eb-849e-b53302c7d4ad.png" width="500">
 
 
 - #### Working of Automated Tagging
-![image](https://user-images.githubusercontent.com/60477228/113470170-22250980-9471-11eb-9716-3f0f2083fc9e.png)
-![image](https://user-images.githubusercontent.com/60477228/113470179-2fda8f00-9471-11eb-9831-ed6ed2ab67ad.png)
-![image](https://user-images.githubusercontent.com/60477228/113470226-9bbcf780-9471-11eb-920a-54b6c4d00874.png)
+
+<img src="https://user-images.githubusercontent.com/60477228/113470170-22250980-9471-11eb-9716-3f0f2083fc9e.png" width="500">
+<img src="https://user-images.githubusercontent.com/60477228/113470179-2fda8f00-9471-11eb-9831-ed6ed2ab67ad.png" width="500">
+<img src="https://user-images.githubusercontent.com/60477228/113470226-9bbcf780-9471-11eb-920a-54b6c4d00874.png" width="500">
 
 
 - #### Navigating to category specific pages
-![image](https://user-images.githubusercontent.com/60477228/113470277-0110e880-9472-11eb-9601-6bb4cc77ce8b.png)
-
+<img src="https://user-images.githubusercontent.com/60477228/113470277-0110e880-9472-11eb-9601-6bb4cc77ce8b.png" width="500">
 
 
