@@ -29,18 +29,19 @@ When a query is passed into the search bar, we use _cosine similarity_ to find t
 
 ### 👷 Working Example:
 - #### Working of Search Functionality
-<img src="https://user-images.githubusercontent.com/60477228/113470114-9ca15980-9470-11eb-935e-ecbf209b3695.png" width="500">
-<img src="https://user-images.githubusercontent.com/60477228/113470123-af1b9300-9470-11eb-849e-b53302c7d4ad.png" width="500">
+<img src="https://user-images.githubusercontent.com/60477228/113505811-cb95f900-955e-11eb-9a37-f54f71df72ff.png" width="500">
+<img src="https://user-images.githubusercontent.com/60477228/113505837-e6686d80-955e-11eb-86ed-3268f61b5901.png" width="500">
 
 
 - #### Working of Automated Tagging
 
-<img src="https://user-images.githubusercontent.com/60477228/113470170-22250980-9471-11eb-9716-3f0f2083fc9e.png" width="500">
-<img src="https://user-images.githubusercontent.com/60477228/113470179-2fda8f00-9471-11eb-9831-ed6ed2ab67ad.png" width="500">
-<img src="https://user-images.githubusercontent.com/60477228/113470226-9bbcf780-9471-11eb-920a-54b6c4d00874.png" width="500">
+<img src="https://user-images.githubusercontent.com/60477228/113505992-af468c00-955f-11eb-8769-7309f03c1eb3.png" width="500">
+<img src="https://user-images.githubusercontent.com/60477228/113505981-9d64e900-955f-11eb-848c-6c1e6f8fbfdb.png" width="500">
+<img src="https://user-images.githubusercontent.com/60477228/113506048-09dfe800-9560-11eb-9f28-b52d8a1ae36b.png" width="500">
+
 
 
 - #### Navigating to category specific pages
-<img src="https://user-images.githubusercontent.com/60477228/113470277-0110e880-9472-11eb-9601-6bb4cc77ce8b.png" width="500">
+<img src="https://user-images.githubusercontent.com/60477228/113505879-22033780-955f-11eb-9e3b-fbb99c30bea5.png" width="500">
 
 
