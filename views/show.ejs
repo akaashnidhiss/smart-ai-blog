@@ -23,7 +23,11 @@
         </h1>
 
         <% for(var i=0; i < article.tags.length ; i++) { %>
-            <a href="/categories/<%= article.tags[i] %>" class="btn btn-outline-secondary btn-sm" style="max-block-size: 50% !important;" role="button">
+            <a href="/categories/<%= article.tags[i] %>" class="btn btn-outline-secondary btn-sm" style="padding: 4px 4px !important;
+                font-size: 12px;
+                min-width: 50px;
+                border-radius: 20px;
+                " role="button">
 
                 <%= article.tags[i] %>
 
@@ -34,7 +38,7 @@
                     <%= article.createdAt.toLocaleDateString() %>
                 </div>
 
-                <a href="/" class="btn btn-secondary">All Articles</a>
+                <a href="/" class="btn btn-dark">All Articles</a>
                 <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
                 <form action="/articles/<%= article.id %>?_method=DELETE" class="d-inline" method="POST">
                     <button type="submit" class="btn btn-danger">Delete</button>
