@@ -18,15 +18,15 @@
 
 
 
-        <h1 class="mb-1">
+        <h1 class="mt-5 mb-1">
             <%= article.title %>
         </h1>
 
         <% for(var i=0; i < article.tags.length ; i++) { %>
-            <a href="/categories/<%= article.tags[i] %>">
-                <span class="badge badge-primary" style="color : #252525 !important; background-color: aliceblue !important; ">
+            <a href="/categories/<%= article.tags[i] %>" class="btn btn-outline-secondary btn-sm" style="max-block-size: 50% !important;" role="button">
+
                 <%= article.tags[i] %>
-            </span>
+
             </a>
             <% } %>
 

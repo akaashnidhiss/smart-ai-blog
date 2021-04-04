@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="styles.css" rel="stylesheet">
 
     <title>📢 Say something!</title>
 </head>
 
 <body>
     <div class="container" style="max-width: 50%;">
-
         <form action="/articles/search" method="POST" class="mt-lg-5 mb-lg-5" style="max-width: 70% !important;
         margin-left: auto;margin-right: auto;">
             <input placeholder="Search for a specific article" type="text" name="query" id="query" class="form-control form-control-lg">
         </form>
-
-        <div class="mt-lg-5 mb-lg-2"></div>
+        <!-- 
+        <h1 class="mt-lg-5 mb-lg-2" style="color: white;">placeholder</h1> -->
 
         <h1 class="mb-4 mt-3" style="text-align: center; 
         background: -webkit-linear-gradient(#eb3349 , #f45c43);
@@ -27,14 +27,15 @@
         -webkit-text-fill-color: transparent;">📢 <span style="text-align: center; 
         background: -webkit-linear-gradient(#ff512f,   #dd2476);
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;">Say something!</span></h1>
+        -webkit-text-fill-color: transparent;
+        font-size: 130%;">Say something!</span></h1>
 
         <a href="/articles/add-article" class="btn btn-success">New Article</a>
 
         <% articles.forEach(function(article) { %>
-            <div class="card mt-3 mb-1">
+            <div class="card mt-3 mb-1" style="">
                 <div class="card-body">
-                    <h4 class="card-title">
+                    <h4 class="card-title" style="font-size: 160%;">
                         <%= article.title %>
                     </h4>
                     <div class="card-subtitle text-muted mb-2">
@@ -53,8 +54,9 @@
     </div>
 
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
