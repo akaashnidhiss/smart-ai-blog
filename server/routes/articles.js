@@ -101,8 +101,54 @@ router.get('/edit/:id', async(req, res) => {
 
 router.put('/edit/:id', async(req, res, next) => {
     req.article = await ArticleInfo.findById(req.params.id);
-    next()
-}, saveArticleAndRedirect('edit'))
+
+    let article = req.article
+    article.title = req.body.title
+    article.description = req.body.description
+    article.body = req.body.body
+
+    const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
+
+    let arr = [];
+    for (let i = 0; i < articleAll.length; i++) {
+
+        if (article.id == articleAll.id) {
+            arr.push(article.body.toString());
+        } else {
+            arr.push(articleAll[i].body.toString());
+        }
+    }
+
+
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'], // get print results in real-time
+        scriptPath: 'python/',
+        args: []
+    };
+
+    var file = fs.createWriteStream('python/array.txt');
+    file.on('error', function(err) { console.log(err) });
+    arr.forEach(function(v) { file.write(JSON.stringify(v) + "," + "/n") });
+    file.end();
+    PythonShell.run('Blogging.py', options, function(err, result) {
+        try {
+            tag_result = JSON.parse(result);
+            console.log('result: ', tag_result);
+            article.tags = tag_result.tags;
+            Article = article.save()
+        } catch (error) {
+            throw err;
+        }
+    });
+    try {
+        Article = await article.save()
+        res.redirect(`/articles/${Article.slug}`)
+    } catch (e) {
+        res.render(`${path}`, { article: article })
+    }
+})
 
 
 // @desc Searching a paricular article from database
@@ -112,24 +158,10 @@ router.post('/search', async(req, res, next) => {
     let options = {
         mode: 'text',
         pythonOptions: ['-u'], // get print results in real-time
-        scriptPath: 'python/', //If you are having python_test.py script in same folder, then it's optional.
-        args: [req.body.query] // [article.body.toString(), articlesAll.body.toString()] //An argument which can be accessed in the script using sys.argv[1]
+        scriptPath: 'python/',
+        args: [req.body.query]
     };
 
-
-
-
-
-    // let arr = [articleAll.length, article.body.toString()];
-    // let arr = [];
-
-    // for (let i = 0; i < articleAll.length; i++) {
-    //     arr.push(articleAll[i].body.toString());
-    // }
-    // var file = fs.createWriteStream('python/array.txt');
-    // file.on('error', function(err) { console.log(err) });
-    // arr.forEach(function(v) { file.write(JSON.stringify(v) + "," + "/n") });
-    // file.end();
 
     const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
 
@@ -137,7 +169,7 @@ router.post('/search', async(req, res, next) => {
         try {
             cosine_result = JSON.parse(result);
             console.log('result: ', cosine_result);
-            res.render('search', { article: [articleAll[cosine_result.scores[0]].toObject(), articleAll[cosine_result.scores[1]].toObject(), articleAll[cosine_result.scores[2]].toObject(), articleAll[cosine_result.scores[3]].toObject()] });
+            res.render('search', { query: req.body.query, article: [articleAll[cosine_result.scores[0]].toObject(), articleAll[cosine_result.scores[1]].toObject(), articleAll[cosine_result.scores[2]].toObject(), articleAll[cosine_result.scores[3]].toObject()] });
 
         } catch (err) {
             console.log(err);
@@ -170,8 +202,8 @@ function saveArticleAndRedirect(path) {
         let options = {
             mode: 'text',
             pythonOptions: ['-u'], // get print results in real-time
-            scriptPath: 'python/', //If you are having python_test.py script in same folder, then it's optional.
-            args: [] // [article.body.toString(), articlesAll.body.toString()] //An argument which can be accessed in the script using sys.argv[1]
+            scriptPath: 'python/',
+            args: []
         };
         var file = fs.createWriteStream('python/array.txt');
         file.on('error', function(err) { console.log(err) });
@@ -192,10 +224,6 @@ function saveArticleAndRedirect(path) {
             }
             // result is an array consisting of messages collected 
             //during execution of script.
-
-
-
-
         });
 
 
