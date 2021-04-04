@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="max-width: 50%;">
 
         <form action="/articles/search" method="POST" class="mt-lg-5 mb-lg-5" style="max-width: 70% !important;margin-left: auto;margin-right: auto;">
             <input placeholder="Search for a specific article" type="text" name="query" id="query" class="form-control form-control-lg">
@@ -20,7 +20,13 @@
 
         <div class="mt-lg-5 mb-lg-2"></div>
 
-        <h1 class="mb-4 mt-3">📢 Say something!</h1>
+        <h1 class="mb-4 mt-3" style="text-align: center; 
+        background: -webkit-linear-gradient(rgb(184, 26, 216), rgb(125, 39, 206));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">📢 <span style="text-align: center; 
+        background: -webkit-linear-gradient(rgb(216, 33, 253), rgb(130, 4, 247));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">Say something!</span></h1>
 
         <a href="/articles/add-article" class="btn btn-success">New Article</a>
 

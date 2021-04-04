@@ -13,8 +13,11 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="mb-4 mt-3">
+    <div class="container" style="max-width: 50%;">
+        <form action="/articles/search" method="POST" class="mt-lg-5 mb-lg-5" style="max-width: 70% !important;margin-left: auto;margin-right: auto;">
+            <input placeholder="Search for a specific article" type="text" name="query" id="query" class="form-control form-control-lg">
+        </form>
+        <h1 class="mb-4 mt-3" style="text-align: center;">
             🔍 All Articles /
             <%= category.replace(/\w/, c => c.toUpperCase())  %>
         </h1>
