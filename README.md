@@ -37,7 +37,7 @@ When a query is passed into the search bar, we use _cosine similarity_ to find t
 
 <img src="https://user-images.githubusercontent.com/60477228/113505992-af468c00-955f-11eb-8769-7309f03c1eb3.png" width="500">
 <img src="https://user-images.githubusercontent.com/60477228/113505981-9d64e900-955f-11eb-848c-6c1e6f8fbfdb.png" width="500">
-<img src="https://user-images.githubusercontent.com/60477228/113506048-09dfe800-9560-11eb-9f28-b52d8a1ae36b.png" width="500">
+<img src="https://user-images.githubusercontent.com/60477228/113506902-1ca8eb80-9565-11eb-948f-3016cee2f140.png" width="500">
 
 
 
