@@ -1,4 +1,4 @@
-# 📝 [Smart AI Blog](https://smart-ai-blog.herokuapp.com/) CMS with _search_ and _automatic tagging_ using TF-IDF NLP Algorithm
+# 📝 [Smart AI Blog](https://smart-ai-blog.herokuapp.com/) CMS with _search_ and _automated tagging_ using TF-IDF NLP Algorithm
 
 + Live [link](https://smart-ai-blog.herokuapp.com/).
 
