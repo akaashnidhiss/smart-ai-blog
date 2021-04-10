@@ -52,16 +52,6 @@ router.get("/python", (req, res, next) => {
     });
 });
 
-
-
-
-
-
-
-
-
-
-
 // @desc Single Article page
 // @route GET /articles/slug
 
@@ -108,24 +98,24 @@ router.put('/edit/:id', async(req, res, next) => {
     article.body = req.body.body
 
     const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
-
+    var article_index = 100;
     let arr = [];
-    for (let i = 0; i < articleAll.length; i++) {
+    for (var i = 0; i < articleAll.length; i++) {
 
-        if (article.id == articleAll.id) {
+        if (article._id.equals(articleAll[i]._id)) {
+            article_index = i;
             arr.push(article.body.toString());
+
         } else {
             arr.push(articleAll[i].body.toString());
         }
     }
-
-
-
+    // arr.push(article_index)
     let options = {
         mode: 'text',
         pythonOptions: ['-u'], // get print results in real-time
         scriptPath: 'python/',
-        args: []
+        args: [article.body, article_index]
     };
 
     var file = fs.createWriteStream('python/array.txt');
@@ -139,7 +129,7 @@ router.put('/edit/:id', async(req, res, next) => {
             article.tags = tag_result.tags;
             Article = article.save()
         } catch (error) {
-            throw err;
+            throw error;
         }
     });
     try {
