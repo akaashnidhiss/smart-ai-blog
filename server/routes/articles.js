@@ -75,7 +75,6 @@ router.get('/:slug', async(req, res) => {
         try {
             cosine_result = JSON.parse(result);
             console.log('result: ', cosine_result);
-            // res.render('search', { query: req.body.query, article: [articleAll[cosine_result.scores[0]].toObject(), articleAll[cosine_result.scores[1]].toObject(), articleAll[cosine_result.scores[2]].toObject(), articleAll[cosine_result.scores[3]].toObject()] });
             res.render('show', { article: article, article_suggest: [articleAll[cosine_result.scores[1]].toObject(), articleAll[cosine_result.scores[2]].toObject(), articleAll[cosine_result.scores[3]].toObject()] });
         } catch (err) {
             console.log(err);
