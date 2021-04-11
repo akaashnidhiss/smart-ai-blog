@@ -58,7 +58,37 @@ router.get("/python", (req, res, next) => {
 router.get('/:slug', async(req, res) => {
     const article = await ArticleInfo.findOne({ slug: req.params.slug });
     if (article == null) res.redirect('/');
-    res.render('show', { article: article });
+
+
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'], // get print results in real-time
+        scriptPath: 'python/',
+        args: [article.body.toString()]
+    };
+
+
+    const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
+
+    PythonShell.run('Cosine_Similarity.py', options, function(err, result) {
+        try {
+            cosine_result = JSON.parse(result);
+            console.log('result: ', cosine_result);
+            // res.render('search', { query: req.body.query, article: [articleAll[cosine_result.scores[0]].toObject(), articleAll[cosine_result.scores[1]].toObject(), articleAll[cosine_result.scores[2]].toObject(), articleAll[cosine_result.scores[3]].toObject()] });
+
+        } catch (err) {
+            console.log(err);
+        }
+    });
+
+
+
+
+
+
+
+    res.render('show', { article: article, article_suggest: [articleAll[cosine_result.scores[1]].toObject(), articleAll[cosine_result.scores[2]].toObject(), articleAll[cosine_result.scores[3]].toObject()] });
 })
 
 // @desc Posting articles and then going to home page

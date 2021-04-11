@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
+    <link href="styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
 
     <title>💡 Looking for something specific?
     </title>
@@ -26,22 +28,24 @@
         <a href="/" class="btn btn-dark">Go back home</a>
 
         <% articles.forEach(function(article) { %>
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <%= article.title %>
-                    </h4>
-                    <div class="card-subtitle text-muted mb-2">
-                        <%= article.createdAt %>
+            <a href="/articles/<%= article.slug %>" style="color: black; text-decoration: none;">
+                <div class="card mt-3 mb-1" style="">
+                    <div class="card-body">
+                        <a href="/articles/<%= article.slug %>" style="color: black; text-decoration: none;">
+                            <h4 class="card-title" style="font-size: 160%;">
+                                <%= article.title %>
+                            </h4>
+                            <div class="card-subtitle text-muted mb-2">
+                                <%= article.createdAt %>
+                            </div>
+                            <div class="card-text mb-2">
+                                <%= article.description %>
+                            </div>
+                            <!-- <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a> -->
                     </div>
-                    <div class="card-text mb-2">
-                        <%= article.description %>
-                    </div>
-                    <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
                 </div>
-            </div>
-
-            <% } ) %>
+                </a>
+                <% } ) %>
 
 
     </div>

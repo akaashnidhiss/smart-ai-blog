@@ -22,17 +22,19 @@
         <h1 class="mt-lg-5 mb-lg-2" style="color: white;">placeholder</h1> -->
 
         <h1 class="mb-4 mt-3" style="text-align: center; 
-        background: -webkit-linear-gradient(#eb3349 , #f45c43);
+        background: -webkit-linear-gradient(#eb3349 , #FF6384);
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;">📢 <span style="text-align: center; 
-        background: -webkit-linear-gradient(#ff512f,   #dd2476);
+        -webkit-text-fill-color: transparent;">
+            <!-- 📢  -->
+            <span style="text-align: center; 
+        background: -webkit-linear-gradient(#ff512f,   #FF6384);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-size: 130%;">Say something!</span></h1>
 
-        <a href="/articles/add-article" class="btn btn-success">New Article</a>
+        <a href="/articles/add-article" class="btn btn-success" style="">New Article</a>
 
-        <% articles.forEach(function(article) { %>
+        <!-- <% articles.forEach(function(article) { %>
             <div class="card mt-3 mb-1" style="">
                 <div class="card-body">
                     <h4 class="card-title" style="font-size: 160%;">
@@ -48,7 +50,26 @@
                 </div>
             </div>
 
-            <% } ) %>
+            <% } ) %> -->
+        <% articles.forEach(function(article) { %>
+            <a href="/articles/<%= article.slug %>" style="color: black; text-decoration: none;">
+                <div class="card mt-3 mb-1" style="">
+                    <div class="card-body">
+                        <a href="/articles/<%= article.slug %>" style="color: black; text-decoration: none;">
+                            <h4 class="card-title" style="font-size: 160%;">
+                                <%= article.title %>
+                            </h4>
+                            <div class="card-subtitle text-muted mb-2">
+                                <%= article.createdAt %>
+                            </div>
+                            <div class="card-text mb-2">
+                                <%= article.description %>
+                            </div>
+                            <!-- <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a> -->
+                    </div>
+                </div>
+                </a>
+                <% } ) %>
 
 
     </div>
