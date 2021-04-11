@@ -20,6 +20,7 @@ nltk.download('punkt')
 
 # >> Initializing classes
 s_words = list(stopwords.words('english'))
+s_words.extend(['miro', 'max', 'medium', 'www', 'https', 'com'])
 # dataset = ['You know the drill: there is a population and you would like to estimate a characteristic, for example, the mean.',
 #            'Recall that we need to maintain different weights for title and body. To calculate TF-IDF of body or title we need to consider both the title and body. To make our job little easier, let’s use dictionary as with (document, token) pair as key and any TF-IDF score as the value.',
 #            'IDF is the inverse of the document frequency which measures the informativeness of term t. When we calculate IDF, it will be very low for the most occurring words such as stop words (because stop words such as “is” is present in almost all of the documents, and N/df will give a very low value to that word). This finally gives what we want, a relative weightage.', 'Now there are few other problems with the IDF, in case of a large corpus, say 10,000, the IDF value explodes. So to dampen the effect we take log of IDF.During the query time, when a word which is not in vocab occurs, the df will be 0. As we cannot divide by 0, we smoothen the value by adding 1 to the denominator.',

@@ -80,7 +80,6 @@ router.get('/:slug', async(req, res) => {
             console.log(err);
         }
     });
-
 })
 
 // @desc Posting articles and then going to home page

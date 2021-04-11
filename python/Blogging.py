@@ -78,7 +78,7 @@ for article in dataset:
     
 
 DF = df(fin_dataset)
-corpus = list(DF.keys())
+# corpus = list(DF.keys())
 solved = tf_idf(fin_dataset)
 # final = sorted(solved.items(), key=lambda x: x[1], reverse=True)
 finalfinal = {}
