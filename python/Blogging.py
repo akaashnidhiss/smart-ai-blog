@@ -14,7 +14,7 @@ nltk.download('stopwords')
 s_words = list(stopwords.words('english'))
 tokenizer = RegexpTokenizer(r'\w+')
 
-s_words.extend(['miro', 'max', 'medium', 'www', 'https', 'com'])
+s_words.extend(['miro', 'max', 'medium', 'www', 'https', 'com', 'nwebsites'])
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -78,15 +78,19 @@ for article in dataset:
     
 
 DF = df(fin_dataset)
-corpus = list(DF.keys())
+# corpus = list(DF.keys())
 solved = tf_idf(fin_dataset)
 # final = sorted(solved.items(), key=lambda x: x[1], reverse=True)
 finalfinal = {}
 
 
 for key in solved.keys():
-    if key[0] == int(sys.argv[2]):
-        finalfinal[key[1]] = solved[key]
+    try:
+        if key[0] == int(sys.argv[2]):
+            finalfinal[key[1]] = solved[key]
+    except:
+        if key[0] == 0:
+            finalfinal[key[1]] = solved[key]
 
 
 sorted_scores = {}

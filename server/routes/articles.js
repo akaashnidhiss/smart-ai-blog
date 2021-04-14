@@ -80,7 +80,6 @@ router.get('/:slug', async(req, res) => {
             console.log(err);
         }
     });
-
 })
 
 // @desc Posting articles and then going to home page
@@ -230,7 +229,12 @@ function saveArticleAndRedirect(path) {
                 console.log('result: ', tag_result);
 
                 article.tags = tag_result.tags;
-                Article = article.save()
+                try {
+                    Article = article.save()
+                    res.redirect(`/articles/${Article.slug}`)
+                } catch (e) {
+                    res.render(`${path}`, { article: article })
+                }
             } catch (error) {
                 throw err;
             }
@@ -239,12 +243,12 @@ function saveArticleAndRedirect(path) {
         });
 
 
-        try {
-            Article = await article.save()
-            res.redirect(`/articles/${Article.slug}`)
-        } catch (e) {
-            res.render(`${path}`, { article: article })
-        }
+        // try {
+        //     Article = await article.save()
+        //     res.redirect(`/articles/${Article.slug}`)
+        // } catch (e) {
+        //     res.render(`${path}`, { article: article })
+        // }
     }
 }
 
