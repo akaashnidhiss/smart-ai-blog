@@ -14,7 +14,7 @@ nltk.download('stopwords')
 s_words = list(stopwords.words('english'))
 tokenizer = RegexpTokenizer(r'\w+')
 
-s_words.extend(['miro', 'max', 'medium', 'www', 'https', 'com'])
+s_words.extend(['miro', 'max', 'medium', 'www', 'https', 'com', 'nwebsites'])
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -85,8 +85,12 @@ finalfinal = {}
 
 
 for key in solved.keys():
-    if key[0] == int(sys.argv[2]):
-        finalfinal[key[1]] = solved[key]
+    try:
+        if key[0] == int(sys.argv[2]):
+            finalfinal[key[1]] = solved[key]
+    except:
+        if key[0] == 0:
+            finalfinal[key[1]] = solved[key]
 
 
 sorted_scores = {}

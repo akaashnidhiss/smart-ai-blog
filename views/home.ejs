@@ -8,12 +8,13 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="styles.css" rel="stylesheet">
+    <link href="tailwind.css" rel="stylesheet">
 
     <title>📢 Say something!</title>
 </head>
 
 <body>
-    <div class="container" style="max-width: 50%;">
+    <div class="container mb-5" style="max-width: 50%;">
         <form action="/articles/search" method="POST" class="mt-lg-5 mb-lg-5" style="max-width: 70% !important;
         margin-left: auto;margin-right: auto;">
             <input placeholder="Search for a specific article" type="text" name="query" id="query" class="form-control form-control-lg">
@@ -26,46 +27,33 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;">
             <!-- 📢  -->
-            <span style="text-align: center; 
+            <span class="" style="text-align: center; 
         background: -webkit-linear-gradient(#ff512f,   #FF6384);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-size: 130%;">Say something!</span></h1>
+        font-size: 300%;">Say something!</span></h1>
+        <!-- 
+        <a href="/articles/add-article" class="btn btn-success" style="">New Article</a> -->
+        <a href="/articles/add-article" class="hover:border-transparent hover:text-green-500 hover:shadow-lg w-full flex items-center justify-center rounded border-2 border-dashed border-gray-200 text-lg font-medium py-10">
+            New Article
+          </a>
 
-        <a href="/articles/add-article" class="btn btn-success" style="">New Article</a>
-
-        <!-- <% articles.forEach(function(article) { %>
-            <div class="card mt-3 mb-1" style="">
-                <div class="card-body">
-                    <h4 class="card-title" style="font-size: 160%;">
-                        <%= article.title %>
-                    </h4>
-                    <div class="card-subtitle text-muted mb-2">
-                        <%= article.createdAt %>
-                    </div>
-                    <div class="card-text mb-2">
-                        <%= article.description %>
-                    </div>
-
-                </div>
-                </a>
-
-            <% } ) %> -->
         <% articles.forEach(function(article) { %>
             <a href="/articles/<%= article.slug %>" style="color: black; text-decoration: none;">
-                <div class="card mt-3 mb-1" style="">
-                    <div class="card-body">
-                        <a href="/articles/<%= article.slug %>" style="color: black; text-decoration: none;">
-                            <h4 class="card-title" style="font-size: 160%;">
-                                <%= article.title %>
-                            </h4>
-                            <div class="card-subtitle text-muted mb-2">
-                                <%= article.createdAt %>
-                            </div>
-                            <div class="card-text mb-2">
-                                <%= article.description %>
-                            </div>
-                            <!-- <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a> -->
+                <div class="hover:shadow-lg bg-white rounded-lg">
+                    <div class="card mt-3 mb-1" style="">
+                        <div class="card-body">
+                            <a href="/articles/<%= article.slug %>" style="color: black; text-decoration: none;">
+                                <h4 class="card-title" style="font-size: 160%;font-weight: lighter;">
+                                    <%= article.title %>
+                                </h4>
+                                <div class="card-subtitle text-muted mb-2">
+                                    <%= article.createdAt %>
+                                </div>
+                                <div class="card-text mb-2">
+                                    <%= article.description %>
+                                </div>
+                        </div>
                     </div>
                 </div>
                 </a>

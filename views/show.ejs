@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
+    <link rel='stylesheet' type='text/css' href='/tailwind.css' />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link href="styles.css" rel="stylesheet">
-    <link href="article_styles.css" rel="stylesheet">
+
+    <link href="/article_styles.css" rel="stylesheet" type='text/css'>
+
 
 
     <title> 📝
@@ -21,14 +23,14 @@
 
 
 
-        <h1 class="mt-5 mb-1" style="">
+        <h1 class="mt-5 mb-1" style="font-weight: lighter;">
             <%= article.title %>
         </h1>
 
         <% for(var i=0; i < article.tags.length ; i++) { %>
             <a href="/categories/<%= article.tags[i] %>" class="btn btn-outline-secondary btn-sm" style="padding: 4px 10px !important;
-                font-size: 12px;
-                min-width: 50px;
+                font-size: 10px;
+                min-width: 40px;
                 border-radius: 20px;
                 " role="button">
 
@@ -51,20 +53,21 @@
                     <%- article.sanitisedHTML %>
                 </div>
 
-                <div class="card mt-lg-5 mb-4">
+                <div class="card mt-lg-5 mb-4" style="border-color: white;">
                     <div class="card-header" style="background: -webkit-linear-gradient(#eb3349 , #FF6384);
                     -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent; color: white;">
+                    -webkit-text-fill-color: transparent; color: white; font-size: 150%; font-weight: lighter;
+                    border: white;">
                         Featured
                     </div>
-                    <div class="row" style="padding: 1rem;">
+                    <!-- <div class="row" style="padding: 1rem;">
                         <% for(var i=0; i < article_suggest.length ; i++) { %>
                             <div class="col" style="margin-top: auto ; margin-bottom: auto;">
-                                <a href="/articles/<%= article_suggest[i].slug %>" style="color: black; text-decoration: none;display: inline-block !important">
-                                    <div class="card" style="width: 18rem; height: 25rem; margin: auto;">
+                                <a href="/articles/<%= article_suggest[i].slug %>" class="hover:shadow-lg bg-white rounded-lg" style="color: black; text-decoration: none;display: inline-block !important">
+                                    <div class="card" style="width: 18rem; min-height: 25rem; margin: auto;">
                                         <div class="card-body">
                                             <a href="/articles/<%= article_suggest[i].slug %>" style="color: black; text-decoration: none;">
-                                                <h4 class="card-title" style="font-size: 160%;">
+                                                <h4 class="card-title" style="font-size: 160%; font-weight: lighter;">
                                                     <%= article_suggest[i].title %>
                                                 </h4>
                                                 <div class="card-subtitle text-muted mb-2">
@@ -73,14 +76,36 @@
                                                 <div class="card-text mb-2">
                                                     <%= article_suggest[i].description %>
                                                 </div>
-                                                <!-- <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a> -->
-                                        </div>
-                                    </div>
-                                    </a>
-                            </div>
+                </div>
+    </div>
+    </a>
 
+
+    <% } %>
+        </div> -->
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
+                        <% for(var i=0; i < article_suggest.length ; i++) { %>
+                            <li>
+                                <a href="/articles/<%= article_suggest[i].slug %>" style="color: black; text-decoration: none;" class="hover:bg-light-blue-500 hover:border-transparent hover:shadow-lg group block rounded-lg p-4 border border-gray-200">
+                                    <dl class="grid sm:block lg:grid xl:block grid-cols-2 grid-rows-2 items-center">
+                                        <div>
+                                            <dt class="sr-only">Title</dt>
+                                            <dd class="leading-6 font-medium text-black">
+                                                <%= article_suggest[i].title %>
+                                            </dd>
+                                        </div>
+                                        <div>
+                                            <dt class="sr-only">Description</dt>
+                                            <dd class="group-hover:text-light-blue-200 text-sm font-medium sm:mb-4 lg:mb-0 xl:mb-4">
+                                                <%= article_suggest[i].description %>
+                                            </dd>
+                                        </div>
+
+                                    </dl>
+                                </a>
+                            </li>
                             <% } %>
-                    </div>
+                    </ul>
                 </div>
     </div>
 
