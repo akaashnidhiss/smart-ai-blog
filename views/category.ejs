@@ -24,7 +24,7 @@
         <!-- <a href="/articles/add-article" class="btn btn-success">New Article</a> -->
 
         <a href="/" class="btn btn-dark mb-3">Go back home</a>
-        <a href="/articles/add-article" style="text-decoration: none;" class="hover:border-transparent hover:text-green-500 hover:shadow-lg w-full flex items-center justify-center rounded border-2 border-dashed border-gray-200 text-lg font-medium py-10">
+        <a href="/articles/add-article" style="text-decoration: none;" class="hover:border-transparent hover:text-blue-700 hover:shadow-lg w-full flex items-center justify-center rounded border-2 border-dashed border-gray-200 text-lg font-medium py-10">
             New Article
           </a>
         <% articles.forEach(function(article) { %>
@@ -44,6 +44,16 @@
                                     <%= article.description %>
                                 </div>
                             </a>
+                        </div>
+                        <div class="px-6 pb-2">
+                            <% for(var i=0; i < article.tags.length ; i++) { %>
+                                <a href="/categories/<%= article.tags[i] %>" style="text-decoration: none;" class="inline-block bg-gray-200 hover:bg-blue-800 hover:text-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" role="button">
+
+                                    #<%= article.tags[i] %>
+
+                                </a>
+                                <% } %>
+
                         </div>
                     </div>
                 </div>

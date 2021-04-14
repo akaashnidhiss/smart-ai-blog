@@ -31,10 +31,10 @@
         background: -webkit-linear-gradient(#ff512f,   #FF6384);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-size: 300%;">Say something!</span></h1>
+        font-size: 400%;">Say something!</span></h1>
         <!-- 
         <a href="/articles/add-article" class="btn btn-success" style="">New Article</a> -->
-        <a href="/articles/add-article" class="hover:border-transparent hover:text-green-500 hover:shadow-lg w-full flex items-center justify-center rounded border-2 border-dashed border-gray-200 text-lg font-medium py-10">
+        <a href="/articles/add-article" class="hover:border-transparent hover:text-red-400 hover:shadow-lg w-full flex items-center justify-center rounded border-2 border-dashed border-gray-200 text-lg font-medium py-10">
             New Article
           </a>
 
@@ -53,6 +53,16 @@
                                 <div class="card-text mb-2">
                                     <%= article.description %>
                                 </div>
+                        </div>
+                        <div class="px-6 pb-2">
+                            <% for(var i=0; i < article.tags.length ; i++) { %>
+                                <a href="/categories/<%= article.tags[i] %>" class="inline-block bg-gray-200 hover:bg-red-500 hover:text-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" role="button">
+
+                                    #<%= article.tags[i] %>
+
+                                </a>
+                                <% } %>
+
                         </div>
                     </div>
                 </div>

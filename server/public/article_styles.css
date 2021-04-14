@@ -1,8 +1,11 @@
 img {
-    max-width: 1000px !important;
+    max-width: 500px !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
-
-/* a {
-    color: black !important;
-} */
+a {
+    color: black;
+}

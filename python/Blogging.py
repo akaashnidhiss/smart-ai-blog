@@ -14,7 +14,7 @@ nltk.download('stopwords')
 s_words = list(stopwords.words('english'))
 tokenizer = RegexpTokenizer(r'\w+')
 
-s_words.extend(['miro', 'max', 'medium', 'www', 'https', 'com', 'nwebsites'])
+s_words.extend(['miro', 'max', 'medium', 'www', 'https', 'com', 'nwebsites', 'link'])
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
