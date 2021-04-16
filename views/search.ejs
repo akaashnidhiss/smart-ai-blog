@@ -12,8 +12,23 @@
     <title>💡 Search Results</title>
 </head>
 
+<style>
+    @media only screen and (min-device-width: 360px) and (max-device-width: 640px) {
+        .container {
+            max-width: 80% !important;
+        }
+    }
+    
+    @media only screen and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) and (min-device-width: 768px) {
+        .container {
+            max-width: 50%;
+        }
+    }
+</style>
+
+
 <body>
-    <div class="container mb-5" style="max-width: 50%;">
+    <div class="container mb-5" style="">
         <form action="/articles/search" method="POST" class="mt-lg-5 mb-lg-5" style="max-width: 70% !important;margin-left: auto;margin-right: auto;">
             <input placeholder="Search for a specific article" type="text" name="query" id="query" class="form-control form-control-lg">
         </form>
@@ -21,12 +36,12 @@
             💡 Search Results for
         </h1>
         <h1 class="mb-4" style="text-align: center;">
-            '<span style="color: burlywood;"><%= query %></span>'
+            '<span class="text-yellow-600" style=""><%= query %></span>'
         </h1>
         <!-- <a href="/articles/add-article" class="btn btn-success">New Article</a> -->
 
         <a href="/" class="btn btn-dark mb-3">Go back home</a>
-        <a href="/articles/add-article" style="text-decoration: none;" class="hover:border-transparent hover:text-yellow-700 hover:shadow-lg w-full flex items-center justify-center rounded border-2 border-dashed border-gray-200 text-lg text-yellow-500 font-medium py-10">
+        <a href="/articles/add-article" style="text-decoration: none;" class="hover:border-transparent hover:text-yellow-700 hover:shadow-lg w-full flex items-center justify-center rounded border-2 border-dashed border-gray-200 text-lg text-yellow-600 font-medium py-10">
             New Article
           </a>
         <% for(var i=0; i < article.length ; i++) { %>
@@ -48,7 +63,7 @@
                         </div>
                         <div class="px-6 pb-2">
                             <% for(var j=0; j < article[i].tags.length ; j++) { %>
-                                <a href="/categories/<%= article[i].tags[j] %>" style="text-decoration: none;" class="inline-block bg-gray-200 hover:bg-yellow-700 hover:text-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" role="button">
+                                <a href="/categories/<%= article[i].tags[j] %>" style="text-decoration: none;" class="inline-block bg-gray-200 hover:bg-yellow-600 hover:text-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" role="button">
 
                                     #<%= article[i].tags[j] %>
 

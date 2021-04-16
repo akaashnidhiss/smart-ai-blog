@@ -2,6 +2,7 @@
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer
+# from stack
 from nltk.stem.wordnet import WordNetLemmatizer
 import collections
 import numpy as np
@@ -16,7 +17,7 @@ nltk.download('wordnet')
 s_words = list(stopwords.words('english'))
 tokenizer = RegexpTokenizer(r'\w+')
 
-s_words.extend(['miro', 'max', 'medium', 'www', 'https', 'com', 'nwebsites', 'link', 'doses'])
+s_words.extend(['miro', 'max', 'medium', 'www', 'https', 'com', 'nwebsites', 'link'])
 Lem = WordNetLemmatizer()
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -37,17 +38,17 @@ index_of_edit = 1000
 def preprocessing(text):
     # >>> Lowering the text
     text = text.lower()
-    text = ''.join(i for i in text if not i.isdigit())
 
     # >>> Stemming
     arr = tokenizer.tokenize(text)
-
+        
     # >>> Removing Stopwords
     arr = [word for word in arr if not word in s_words]
-    arr = [Lem.lemmatize(word) for word in arr]
-    # for word in arr :
-    #     lemword = Lem.lemmatize(word)
-    return arr
+
+    #from stack
+    for word in arr :
+        lemword = Lem.lemmatize(word)
+    return lemword
 
 # >> Document Frequency
 def df(dataset):
@@ -81,36 +82,40 @@ fin_dataset = []
 for article in dataset:
     if article not in fin_dataset:
         fin_dataset.append(preprocessing(article))
+
+print(fin_dataset)
     
 
-DF = df(fin_dataset)
-# corpus = list(DF.keys())
-solved = tf_idf(fin_dataset)
-# final = sorted(solved.items(), key=lambda x: x[1], reverse=True)
-finalfinal = {}
+# DF = df(fin_dataset)
+# # corpus = list(DF.keys())
+# solved = tf_idf(fin_dataset)
+# # final = sorted(solved.items(), key=lambda x: x[1], reverse=True)
+# finalfinal = {}
 
 
-for key in solved.keys():
-    try:
-        if key[0] == int(sys.argv[2]):
-            finalfinal[key[1]] = solved[key]
-    except:
-        if key[0] == 0:
-            finalfinal[key[1]] = solved[key]
+# for key in solved.keys():
+#     try:
+#         if key[0] == int(sys.argv[2]):
+#             finalfinal[key[1]] = solved[key]
+#     except:
+#         if key[0] == 0:
+#             finalfinal[key[1]] = solved[key]
 
 
-sorted_scores = {}
-sorted_score_temp = sorted(finalfinal, key=finalfinal.get, reverse=True)  # [1, 3, 2]
-i = 0
-for w in sorted_score_temp:
-    if i in range(5):
-        sorted_scores[w] = finalfinal[w]
-        i += 1
+# sorted_scores = {}
+# sorted_score_temp = sorted(finalfinal, key=finalfinal.get, reverse=True)  # [1, 3, 2]
+# i = 0
+# for w in sorted_score_temp:
+#     if i in range(5):
+#         sorted_scores[w] = finalfinal[w]
+#         i += 1
 
-answer = {}
+# # answer = {}
 
-answer['tags'] = list(sorted_scores.keys())
+# answer['tags'] = list(sorted_scores.keys())
 
-# answer['tags'] = int(sys.argv[2])
+# # answer['tags'] = int(sys.argv[2])
 
-print(json.dumps(answer))
+# print(json.dumps(answer))
+
+

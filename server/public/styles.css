@@ -1,8 +1,10 @@
-/* ::selection {
+::selection {
     color: white;
     background: #FF6384;
 }
 
+
+/* 
 .btn.btn-success {
     background-color: #FF6384;
     border-color: #FF6384;
@@ -21,7 +23,9 @@
 .btn.btn-primary:hover {
     background-color: #6384ff;
     border-color: #6384ff;
-} */
+}
+
+*/
 
 img {
     max-width: 1000px !important;
@@ -35,4 +39,22 @@ img {
 
 .card {
     transition: all .2s linear;
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 640px) {
+    .container {
+        max-width: 80% !important;
+    }
+    .app-name {
+        font-size: 300%;
+    }
+}
+
+@media only screen and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) and (min-device-width: 768px) {
+    .container {
+        max-width: 50%;
+    }
+    .app-name {
+        font-size: 400%;
+    }
 }

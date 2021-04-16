@@ -12,8 +12,22 @@
     <title>💡 Looking for something specific?</title>
 </head>
 
+<style>
+    @media only screen and (min-device-width: 360px) and (max-device-width: 640px) {
+        .container {
+            max-width: 80% !important;
+        }
+    }
+    
+    @media only screen and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) and (min-device-width: 768px) {
+        .container {
+            max-width: 50%;
+        }
+    }
+</style>
+
 <body>
-    <div class="container mb-5" style="max-width: 50%;">
+    <div class="container mb-5">
         <form action="/articles/search" method="POST" class="mt-lg-5 mb-lg-5" style="max-width: 70% !important;margin-left: auto;margin-right: auto;">
             <input placeholder="Search for a specific article" type="text" name="query" id="query" class="form-control form-control-lg">
         </form>

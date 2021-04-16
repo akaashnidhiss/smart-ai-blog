@@ -87,9 +87,58 @@ router.get('/:slug', async(req, res) => {
 
 
 router.post('/', async(req, res, next) => {
-    req.article = new ArticleInfo()
-    next()
-}, saveArticleAndRedirect('new'))
+
+    article = new ArticleInfo({
+        title: req.body.title,
+        description: req.body.description,
+        body: req.body.body
+    })
+
+
+    await article.save(function(err, article) {
+        if (err) console.log(err);
+        console.log('Article saved successfully!');
+    })
+
+    const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
+
+    let arr = [article.body.toString()];
+
+    for (let i = 1; i < articleAll.length; i++) {
+        arr.push(articleAll[i].body.toString());
+    }
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        scriptPath: 'python/',
+        args: []
+    };
+    var file = fs.createWriteStream('python/array.txt');
+    file.on('error', function(err) { console.log(err) });
+    arr.forEach(function(v) { file.write(JSON.stringify(v) + "," + "/n") });
+    file.end();
+
+
+
+    PythonShell.run('Blogging.py', options, function(err, result) {
+        try {
+            tag_result = JSON.parse(result);
+            console.log('result: ', tag_result);
+
+            article.tags = tag_result.tags;
+            try {
+                Article = article.save()
+                res.redirect(`/articles/${Article.slug}`)
+            } catch (e) {
+                res.render(`${path}`, { article: article })
+            }
+        } catch (error) {
+            throw err;
+        }
+    });
+})
+
 
 // @desc Deleting articles and then going to home page
 // @route DELETE /articles/id
@@ -204,7 +253,8 @@ function saveArticleAndRedirect(path) {
 
         const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
         // let arr = [articleAll.length, article.body.toString()];
-        let arr = [article.body.toString()];
+        // let arr = [article.body.toString()];
+        let arr = [];
 
         for (let i = 1; i < articleAll.length; i++) {
             arr.push(articleAll[i].body.toString());
@@ -252,45 +302,6 @@ function saveArticleAndRedirect(path) {
     }
 }
 
-
-function cosine_similarity(query) {
-    return async(req, res) => {
-        let options = {
-            mode: 'text',
-            pythonOptions: ['-u'], // get print results in real-time
-            scriptPath: 'python/', //If you are having python_test.py script in same folder, then it's optional.
-            args: [] // [article.body.toString(), articlesAll.body.toString()] //An argument which can be accessed in the script using sys.argv[1]
-        };
-
-
-
-
-        const articleAll = await ArticleInfo.find().sort({ createdAt: 'desc' });
-        // let arr = [articleAll.length, article.body.toString()];
-        let arr = [query.toString()];
-
-        for (let i = 0; i < articleAll.length; i++) {
-            arr.push(articleAll[i].body.toString());
-        }
-        res.send('working')
-            // var file = fs.createWriteStream('python/array.txt');
-            // file.on('error', function(err) { /* error handling */ });
-            // arr.forEach(function(v) { file.write(JSON.stringify(v) + "," + "/n") });
-            // file.end();
-
-        PythonShell.run('Cosine_Similarity.py', options, function(err, result) {
-            try {
-                cosine_result = JSON.parse(result);
-                console.log('result: ', cosine_result);
-                res.send('done')
-
-            } catch (error) {
-                console.log(error);
-            }
-        });
-    }
-
-}
 
 
 module.exports = router;
