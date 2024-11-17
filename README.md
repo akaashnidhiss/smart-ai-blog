@@ -27,7 +27,11 @@
 
 
 
-This project seeks to create a content management system (CMS) for a online publishing platform with features to enhance user retention, overall user friendliness and help admin users to perform CRUD operations on their respective articles.
+We started this project to try and create a Medium like blogging system for our university.
+<br>
+We used our university's project based grading system during Covid to find the time to build out this content management system (CMS) for a online publishing platform. 
+
+The vision of this project was to built it with features to enhance user retention, overall user friendliness and help admin users to perform CRUD operations on their respective articles.
 
 The project seeks to automate the process of placing the articles under topics/tags without the need for users to add it in themselves, helping the users focus solely on the content they upload, rather than how viewers find their articles.
 
